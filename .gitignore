@@ -1,0 +1,10 @@
+run.sh
+.vscode/
+.VSCodeCounter/
+w64devkit/
+
+bin/saves
+bin/thaumjourney
+bin/thaumjourney.exe
+
+structure_generator/structure_generator
