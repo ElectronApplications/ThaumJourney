@@ -54,10 +54,11 @@ void io_thread() {
 
     update_scene(true);
 
-    while (is_running) {
-        poll_events();
+    while (is_running) { // Пока требуется отрисовка графики и обработка событий
+        poll_events(); // Производим обработку событий
 
         if(current_scene != SceneEnum::GameScene && current_scene != SceneEnum::PauseScene && current_scene != SceneEnum::InventoryScene && current_scene != SceneEnum::UpgradeScene && current_scene != SceneEnum::ExitSaveScene && current_scene != SceneEnum::DeathScene && current_scene != SceneEnum::ConsoleScene) {
+            // Рисуем фоновую картинку в главном меню и прочих сценах
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             SDL_RenderClear(renderer);
 
@@ -74,15 +75,18 @@ void io_thread() {
             SDL_RenderCopy(renderer, background_texture, &src, nullptr);
         }
         else if(current_scene == SceneEnum::InventoryScene || current_scene == SceneEnum::UpgradeScene || current_scene == SceneEnum::ConsoleScene) {
+            // Рисуем темный фон в инвентаре, прокачке и консоли
             SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
             SDL_RenderClear(renderer);
         }
         else {
+            // Рисуем светлый фон в остальных сценах
             SDL_SetRenderDrawColor(renderer, 104, 181, 223, 255);
             SDL_RenderClear(renderer);
         }
 
         if(current_scene == SceneEnum::GameScene) {
+            // Производим обработку игровых событий
             player.action();
             
             for(int i = entities.size()-1; i >= 0; i--) {
@@ -121,6 +125,7 @@ void io_thread() {
         }
 
         if(current_scene == SceneEnum::GameScene || current_scene == SceneEnum::PauseScene || current_scene == SceneEnum::ExitSaveScene || current_scene == SceneEnum::DeathScene) {
+            // Производим отрисовку внутри игровых элементов
             for(int x = center_x - render_distance/2; x <= center_x + render_distance/2; x++) {
                 for(int y = center_y - render_distance/2; y <= center_y + render_distance/2; y++) {
                     draw_chunk(loaded_chunks[{x, y}]);
@@ -140,6 +145,7 @@ void io_thread() {
 
         SDL_RenderPresent(renderer);
 
+        // Вычисляем фпс
         Uint64 ticks = SDL_GetTicks64();
         fps = 1000.0 / (ticks - prev_ticks);
         prev_ticks = ticks;
@@ -158,8 +164,9 @@ void poll_events() {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         switch (event.type) {
-            case SDL_QUIT:
+            case SDL_QUIT: // Событие закрытия окна
                 if(current_scene == SceneEnum::GameScene || current_scene == SceneEnum::PauseScene || current_scene == SceneEnum::InventoryScene || current_scene == SceneEnum::UpgradeScene || current_scene == SceneEnum::DeathScene || current_scene == SceneEnum::ConsoleScene) {
+                    // Если запущена игра, спрашиваем пользователя, надо ли её сохранить
                     quitting = true;
                     current_scene = SceneEnum::ExitSaveScene;
                     update_scene(true);
