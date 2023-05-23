@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
     string textr((istreambuf_iterator<char>(reference_file)), (istreambuf_iterator<char>()));
     reference_text = textr;
 
-    thread io(io_thread);
+    thread io(io_thread); // Создаем и запускаем основной поток игры
     io.join();
 
     return 0;
