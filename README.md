@@ -18,3 +18,22 @@
 Одним из самых простых способов установить данное ПО под windows является пакет w64devkit, доступный по [ссылке](https://github.com/skeeto/w64devkit/releases/tag/v1.19.0).
 Для компиляции данного проекта надо использовать версию w64devkit-1.19.0.zip. Этот архив следует распаковать, и запустить файл w64devkit.exe. Затем командой cd <путь> надо перейти в корневую папку проекта.\
 Следующий шаг, общий для всех платформ - воспользоваться командой make, которая автоматически скомпилирует весь проект и сгенерирует исполняемый файл в папке bin/.
+
+# Скриншоты
+## Главное меню
+![image](https://github.com/ElectronApplications/ThaumJourney/assets/36295932/91afac20-0bc4-4a99-bc64-72bb0b53d4a1)
+
+## Новая игра
+![image](https://github.com/ElectronApplications/ThaumJourney/assets/36295932/88648698-6872-4e7d-a158-ddf2d502823a)
+
+## Игровой процесс 
+![image](https://github.com/ElectronApplications/ThaumJourney/assets/36295932/4606bbad-7878-4dba-b2aa-76ea28b25bab)
+
+## Пауза
+![image](https://github.com/ElectronApplications/ThaumJourney/assets/36295932/7d5a9ef5-c220-474d-80d7-fe426fed620f)
+
+## Прокачка персонажа
+![image](https://github.com/ElectronApplications/ThaumJourney/assets/36295932/e3915c2c-5aba-400d-90ed-0dad06974c84)
+
+## Инвентарь
+![image](https://github.com/ElectronApplications/ThaumJourney/assets/36295932/4662b8b9-c9cc-49ab-a734-e5891c4a0223)
